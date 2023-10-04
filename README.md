@@ -6,7 +6,7 @@
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
- ( <br> )
+  <br> 
  
 
 This project is companion to the research manuscript titled "Algorithmic obstuctions and order-preserving braids" which will be available on ARXIV soon. All technical terminolgy is defined in the manuscript.
