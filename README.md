@@ -7,7 +7,9 @@
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.
 
-This project is companion to the research manuscript titled Algorithms for Order-Preservng Braids for  which can be found on ARXIV soon. All technical terminolgy is defined in the manuscript.
+ 
+
+This project is companion to the research manuscript titled Algorithmic obstuctions and order-preserving braids which will be available on ARXIV soon. All technical terminolgy is defined in the manuscript.
 
 The authors of this project are Jonathan Johnson, Nancy Scherich and Hannah Turner.
 
