@@ -10,7 +10,7 @@
   <br> 
    <br> 
 
-This project is a companion to the research manuscript titled "Algorithmic obstructions for order-preserving braids" which can be found on ARXIV soon. All technical terminology is defined in the manuscript.
+This project is a companion to the research manuscript titled "Algorithmic obstructions for order-preserving braids" which will be available on ARXIV soon. All technical terminology is defined in the manuscript.
 
 The authors of this project are Jonathan Johnson, Nancy Scherich, and Hannah Turner.
 
