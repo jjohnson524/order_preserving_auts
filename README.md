@@ -14,7 +14,7 @@ This project is a companion to the research manuscript titled "Algorithmic obstr
 
 The authors of this project are Jonathan Johnson, Nancy Scherich, and Hannah Turner.
 
-To begin, download the following files from the github repoistory
+To begin, download the following files from the github repository
 Ball.py
 Braid.py
 preserve_order.py
@@ -58,11 +58,11 @@ output:
 
 Optional parameters:
 
-- Setting "track_extra_elements = True" will improve the efficiency of the program by looking for contradictions from outside of the *k*-precone. This setting can lead to finding condradictions at smaller values of *k*.
+- Setting "track_extra_elements = True" will improve the efficiency of the program by looking for contradictions from outside of the *k*-precone. This setting can lead to finding contradictions at smaller values of *k*.
 
 - Setting "tree=True", if the function returns False, will print enough information to construct a proof that *b* does not preserve an order. The information printed is a binary tree where each node of the tree has the following information: unique id of the node, parent node  unique id, element name that was added to the precone at that stage of the tree, and proof information at that node. If there is a contradiction at the node, the proof info will show two elements in the precone that are inverses of each other, and equations describing how those two elements were added to the cone. If there is no contradiction at that node, the proof info will say "no contradiction".
 
-- Setting count=True will override other outputs and retun a number. 0 means false
+- Setting count=True will override other outputs and return a number. 0 means false
 
 
 
@@ -210,10 +210,10 @@ run_preserve_order_obstruct(gens,max_k,min_k=2,order=1,track_extra_elements = Fa
 ####  The function run_preserve_order_obstruct.
 
 input: 
-- a braid *b* and and two integers *k*=maximum and *l*=minimun 
+- a braid *b* and and two integers *k*=maximum and *l*=minimum 
 
 output: 
-- This function will iteratively call the preserve\_order\_obstruct function for increasing *k*-values starting at the minimum *k*-value (input of *l*), and stopping at the maximum *k*-value (inputed of *k*). This function creates a txt file named b_k_l.txt where it will display the output.
+- This function will iteratively call the preserve\_order\_obstruct function for increasing *i*-values starting at the minimum *i*-value (input of *l*), and stopping at the maximum *i*-value (input of *k*). This function creates a txt file named b_k_l.txt where it will display the output.
 
 - With no optional parameters, for each *k*-value in the iterative range, this function will display on a new line
 
@@ -222,7 +222,7 @@ output:
 When the program returns True, for a fixed i between *l* and *k*, there is at least one conjugate invariant i-precone of the free group preserved by the braid. When the program returns False, for a given i, there is no possible conjugate invariant i-precone of the free group preserved by the braid.
 
 Optional parameters:
-- Setting "track\_extra\_elements = True" will improve the efficiency of the program by looking for contradictions from outside of the k-precone. This setting can lead to finding condradictions at smaller values of *k*.
+- Setting "track\_extra\_elements = True" will improve the efficiency of the program by looking for contradictions from outside of the k-precone. This setting can lead to finding contradictions at smaller values of *k*.
 
 - Setting "tree=True", if the function returns False, will print enough information to construct a proof that b does not preserve an order. The information printed is a binary tree where each node of the tree has the following information: unique id of the node, parent node  unique id, element name that was added to the precone at that stage of the tree, and proof information at that node. If there is a contradiction at the node, the proof info will show two elements in the precone that are inverses of each other, and equations describing how those two elements were added to the cone. If there is no contradiction at that node, the proof info will say "no contradiction".
 
