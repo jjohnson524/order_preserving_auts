@@ -1,6 +1,11 @@
 # order_preserving_braids Read Me file
 
-copyright info
+ GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
 
 This project is companion to the research manuscript titled Algorithms for Order-Preservng Braids for  which can be found on ARXIV soon. All technical terminolgy is defined in the manuscript.
 
