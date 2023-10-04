@@ -10,9 +10,9 @@
   <br> 
    <br> 
 
-This project is companion to the research manuscript titled Algorithms for Order-Preservng Braids for  which can be found on ARXIV soon. All technical terminolgy is defined in the manuscript.
+This project is a companion to the research manuscript titled "Algorithmic obstructions for order-preserving braids" which can be found on ARXIV soon. All technical terminology is defined in the manuscript.
 
-The authors of this project are Jonathan Johnson, Nancy Scherich and Hannah Turner.
+The authors of this project are Jonathan Johnson, Nancy Scherich, and Hannah Turner.
 
 To begin, download the following files from the github repoistory
 Ball.py
