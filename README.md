@@ -1,18 +1,10 @@
 # order_preserving_braids Read Me file
 
- GNU GENERAL PUBLIC LICENSE
-                       Version 3, 29 June 2007
+copyright info
 
- Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
-  <br> 
-   <br> 
- 
+This project is companion to the research manuscript titled Algorithms for Order-Preservng Braids for  which can be found on ARXIV soon. All technical terminolgy is defined in the manuscript.
 
-This project is companion to the research manuscript titled "Algorithmic obstuctions and order-preserving braids" which will be available on ARXIV soon. All technical terminolgy is defined in the manuscript.
-
-The authors of this project are Jonathan Johnson, Nancy Scherich, and Hannah Turner.
+The authors of this project are Jonathan Johnson, Nancy Scherich and Hannah Turner.
 
 To begin, download the following files from the github repoistory
 Ball.py
@@ -30,7 +22,7 @@ To get SageMath on your device, go to [this link](https://doc.sagemath.org/html/
 ### Group element notation:
 
 #### Braids: 
-- Braids are stored as a list of integers describing the braid word in terms of the standard Artin generators. For example sigma\_1.sigma\_2^{-1}.sigma\_2^{-1}.sigma_5 is written as \[1,-2,-2,5\]. 
+- Braids are stored as a list of integers describing the braid word in terms of the standard Artin generators. For example $\sigma\_1\sigma\_2^{-1}\sigma\_2^{-1}\sigma_5$ is written as \[1,-2,-2,5\]. 
 
 #### Free group elements:
 - Generators of the of the free group are denoted x1, x2, x3 ... and their inverses are denoted by xi^{-1}.
@@ -73,14 +65,14 @@ Ordering the inputs:
 
 &nbsp;&nbsp;&nbsp; preserve\_order\_obstruct(braid,k)-- not using optional parameters
 
-&nbsp;&nbsp;&nbsp; preserve\_order\_obstruct(braid,k,trac\k_extra\_elements = True, tree=True)-- using optional parameters
+&nbsp;&nbsp;&nbsp; preserve\_order\_obstruct(braid,k,track\_extra\_elements = True, tree=True)-- using optional parameters
 
 Example usage:
 
-    sage: preserve\_order\_obstruct([-2,3],2)
+    sage: preserve_order_obstruct([-2,3],2)
     output: True   
         
-    sage:    preserve\_order\_obstruct(\[1,-2,-2,-2\],4,track\_extra\_elements =True, tree=True)
+    sage:    preserve_order_obstruct(\[1,-2,-2,-2\],4,track_extra_elements =True, tree=True)
     output: 
             0
                 parent
@@ -106,7 +98,7 @@ Example usage:
             False
 
 
-    sage: preserve\_order\_obstruct([1,-2,-2,-2],4, tree=True)
+    sage: preserve_order_obstruct([1,-2,-2,-2],4, tree=True)
     output: 
             0
                 parent
@@ -201,7 +193,7 @@ Example usage:
 
 At the start of your SageMath file, import the run_preserve_order.py file with the following code
 
-&nbsp;&nbsp;&nbsp; import("run\_preserv\e_order.py")
+&nbsp;&nbsp;&nbsp; import("run\_preserve\_order.py")
 
 This will automatically import Ball.py, Braid.py, preserve\_order.py, and word\_length.py.
 
