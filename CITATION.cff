@@ -2,8 +2,8 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: order-preserving-braids
-message: Proving braids are not order-preserving
+title: order-preserving-auts
+message: Proving automorphisms of free groups are not order-preserving
 type: software
 authors:
   - given-names: Jonathan
@@ -21,7 +21,7 @@ authors:
     email: hannah.turner@math.gatech.edu
     affiliation: Georgia Institute of Technology
     orcid: 'https://orcid.org/0000-0002-9026-029X'
-repository-code: 'https://github.com/jjohnson524/order_preserving_braids'
+repository-code: 'https://github.com/jjohnson524/order_preserving_auts'
 license: GPL-3.0
 version: '1.0'
-date-released: '2023-10-05'
+date-released: '2023-12-05'
