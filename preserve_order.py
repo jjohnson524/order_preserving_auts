@@ -1,7 +1,7 @@
 from math import gcd
 import sys
 from sage.all import *
-import Ball, Braid, word_length
+import Ball, Automorphism, word_length
 
 tree_dict={}
 nodeUID = 0
@@ -200,8 +200,8 @@ class PositiveCone:
             nodeUID+=1
 
         b = self.braid
-        f=b.action(optimize=True)
-        f_inv=b.inverse_action(optimize=True)
+        f=b.action()
+        f_inv=b.inverse_action()
         G=b.get_group_gens()
 
         self.active_braid = []
@@ -484,7 +484,7 @@ This function returns True if for every k-precone P, there is an obstruction to 
 This function returns False if there is at least one k-precone preserved by the braid.
 '''
 
-def preserve_order_obstruct(gens,k,kact=-1,kconj=-1,kprod=-1,order=1,track_extra_elements = False,add_extra_products= False,count=False,Print=False, tree=False, zero_exp_sum=True, diagnostic = False):
+def preserve_order_obstruct(aut,k,kact=-1,kconj=-1,kprod=-1,order=1,track_extra_elements = False,add_extra_products= False,count=False,Print=False, tree=False, diagnostic = False):
     global extra_checks
     extra_checks = 0
     if kact==-1:
@@ -493,28 +493,28 @@ def preserve_order_obstruct(gens,k,kact=-1,kconj=-1,kprod=-1,order=1,track_extra
         kconj=k
     if kprod==-1:
         kprod=k
-    braid=Braid.Braid(gens)
-    F = Braid.FreeGroup1(braid.strands)
-    if Print:
-        print('Input Braid: '+str(gens))
-        f=braid.action(optimize=True)
-        f_inv=braid.inverse_action(optimize=True)
-        G=braid.get_group_gens()
-        action_out = 'Optimized Braid Action: ['
-        for i in range(braid.strands):
-            action_out = action_out + 'beta(' + str(G[i]) + ')=' + str(f(G[i]))
-            if i < braid.strands-1:
-                action_out = action_out + ', '
-        action_out = action_out + ']'
-        print(action_out)
+    F = Automorphism.FreeGroup1(aut.rank)
+#    if Print:        
+#        print('Input Braid: '+str(gens))
+#        f=braid.action(optimize=True)
+#        f_inv=braid.inverse_action(optimize=True)
+#        G=braid.get_group_gens()
+#        action_out = 'Optimized Braid Action: ['
+#        for i in range(braid.strands):
+#            action_out = action_out + 'beta(' + str(G[i]) + ')=' + str(f(G[i]))
+#            if i < braid.strands-1:
+#                action_out = action_out + ', '
+#        action_out = action_out + ']'
+#        print(action_out)
 
-        action_out = 'Optimized Braid Inverse: ['
-        for i in range(braid.strands):
-            action_out = action_out + 'beta^-1(' + str(G[i]) + ')=' + str(f_inv(G[i]))
-            if i < braid.strands-1:
-                action_out = action_out + ', '
-        action_out = action_out + ']'
-        print(action_out)
+#        action_out = 'Optimized Braid Inverse: ['
+#        for i in range(braid.strands):
+#            action_out = action_out + 'beta^-1(' + str(G[i]) + ')=' + str(f_inv(G[i]))
+#            if i < braid.strands-1:
+#                action_out = action_out + ', '
+#        action_out = action_out + ']'
+#        print(action_out)
+    zero_exp_sum=False
     B = Ball.Ball(F,k)
     D = Ball.PairsinBall(B)
     pairs = []
@@ -523,7 +523,7 @@ def preserve_order_obstruct(gens,k,kact=-1,kconj=-1,kprod=-1,order=1,track_extra
     for i in range(len(D)):
         pairs.append(D[len(D)-i-1])
 
-    P = PositiveCone(braid,k,kact,kconj,kprod,order,track_extra_elements,add_extra_products)
+    P = PositiveCone(aut,k,kact,kconj,kprod,order,track_extra_elements,add_extra_products)
     if zero_exp_sum:
         start_elt = F([1])**-1*F([2])
     else:
@@ -605,74 +605,3 @@ def CanCreateCone(P:PositiveCone,D,Print, itemID, count, zero_exp_sum, diagnosti
             print('Found cone with ' + str(P.size())+ ' elements!')
             #P.print_cone()
     return True, num_cones + 1
-
-def check_cycle_condition(gens, Print=False):
-    braid=Braid.Braid(gens)
-    G=braid.get_group_gens()
-    f=braid.action()
-    if Print:
-        print('Input Braid: '+str(gens))
-        action_out = 'Braid Action: ['
-        for i in range(braid.strands):
-            action_out = action_out + 'beta(' + str(G[i]) + ')=' + str(f(G[i]))
-            if i < braid.strands-1:
-                action_out = action_out + ', '
-        action_out = action_out + ']'
-        print(action_out)
-    N = braid.strands
-    perm = braid.permutation()
-    if Print:
-        print('Premutation Type: '+str(perm))
-    conj_words=[]
-    for g in G:
-        image = f(g)
-        l = word_length.word_length(image)
-        new_word = G[0]*G[0]**-1
-        for u in range((l-1)/2):
-            s = sign(image.syllables()[0][1])
-            x = image.syllables()[0][0]
-            new_word = new_word * x**s
-            image = x**(-s) * image
-        conj_words.append(new_word)
-        if Print:
-            print(str(g) +' is conjugated by ' + str(new_word))
-    cycles = []
-    indeces = list(range(1,N+1))
-    while len(indeces)>0:
-        new_cycle = set()
-        i=indeces[0]
-
-        j=i
-        cycle_complete = False
-        while(not cycle_complete):
-            indeces.remove(j)
-            new_cycle.add(j)
-            j=perm(j)
-            if i==j:
-                cycle_complete = True
-        cycles.append(new_cycle)
-    satisfied = False
-    for i in range(1,N+1):
-        if perm(i)==i:
-            if Print:
-                print(str(G[i-1]) + ' fixed in homology.')
-            g=G[i-1]
-            cyc_condition=True
-            cycle_pairs = []
-            for C in cycles:
-                clay_const = 0
-                for j in C:
-                    clay_const=clay_const + word_length.exponent_gen_sum(conj_words[j-1],g)
-                cycle_pairs.append([clay_const,len(C)])
-                if gcd(clay_const,len(C))!=1:
-                    cyc_condition=False
-
-            if cyc_condition:
-                satisfied = True
-                if Print:
-                    print('    Cycle Pairs: ' + str(cycle_pairs) + ' - cycle condition satisfied for ' + str(G[i-1]))
-            elif Print:
-                print('    Cycle Pairs: ' + str(cycle_pairs) + ' - cycle condition not satisfied for ' + str(G[i-1]))
-        elif Print:
-            print(str(G[i-1]) + ' not fixed in homology.')
-    return satisfied
