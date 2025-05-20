@@ -493,7 +493,7 @@ def preserve_order_obstruct(aut,k,kact=-1,kconj=-1,kprod=-1,order=1,track_extra_
         kconj=k
     if kprod==-1:
         kprod=k
-    F = Automorphism.FreeGroup1(aut.rank())
+    F = aut.domain()
 #    if Print:        
 #        print('Input Braid: '+str(gens))
 #        f=braid.action(optimize=True)
