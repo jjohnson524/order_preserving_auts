@@ -62,10 +62,10 @@ class ConeElement:
 
 class PositiveCone:
 
-    def __init__(self,braid,ball_radius,braid_radius,conj_radius,prod_radius,order,track_extra_elements,add_extra_products):
-        self.braid=braid
+    def __init__(self,aut,ball_radius,aut_radius,conj_radius,prod_radius,order,track_extra_elements,add_extra_products):
+        self.aut=aut
         self.ball_radius = ball_radius
-        self.braid_radius = braid_radius
+        self.aut_radius = aut_radius
         self.conj_radius = conj_radius
         self.prod_radius = prod_radius
         self.order = order
@@ -76,7 +76,7 @@ class PositiveCone:
         self.prod_elements = set()
         self.total_element_set = set()
         self.num_elements = 0
-        self.active_braid = []
+        self.active_aut = []
         self.active_conj = []
         self.active_cyc = []
         self.active_prod = []
@@ -84,7 +84,8 @@ class PositiveCone:
         self.end_prod = {}
         self.active_begin_prod = {}
         self.active_end_prod = {}
-        G = braid.get_group_gens()
+        F = aut.domain()
+        G = F.generators()
         for gen in G:
             self.begin_prod[str(gen)]=[]
             self.begin_prod[str(gen**-1)]=[]
@@ -99,11 +100,11 @@ class PositiveCone:
         self.contradiction = False
 
     def copy(self):
-        new_cone=PositiveCone(self.braid,self.ball_radius,self.braid_radius,self.conj_radius,self.prod_radius,self.order,self.track_extra, self.add_extra_products)
+        new_cone=PositiveCone(self.aut,self.ball_radius,self.aut_radius,self.conj_radius,self.prod_radius,self.order,self.track_extra, self.add_extra_products)
         new_cone.elements = self.elements.copy()
         new_cone.extra = self.extra.copy()
         new_cone.prod_elements = self.prod_elements.copy()
-        G = self.braid.get_group_gens()
+        G = self.aut.get_group_gens()
         for gen in G:
             new_cone.begin_prod[str(gen)] = self.begin_prod[str(gen)].copy()
             new_cone.begin_prod[str(gen**-1)] = self.begin_prod[str(gen**-1)].copy()
@@ -199,12 +200,12 @@ class PositiveCone:
         if self.size()>0:
             nodeUID+=1
 
-        b = self.braid
+        b = self.aut
         f=b.action()
         f_inv=b.inverse_action()
         G=b.get_group_gens()
 
-        self.active_braid = []
+        self.active_aut = []
         self.active_conj = []
         self.active_cyc = []
         self.active_prod = []
@@ -231,8 +232,8 @@ class PositiveCone:
 
         A_begin = {}
         A_end = {}
-        while len(self.active_braid) > 0 or len(self.active_conj) > 0 or len(self.active_cyc) > 0 or len(self.active_prod) > 0:
-            A_braid = self.active_braid.copy()
+        while len(self.active_aut) > 0 or len(self.active_conj) > 0 or len(self.active_cyc) > 0 or len(self.active_prod) > 0:
+            A_aut = self.active_aut.copy()
             A_conj = self.active_conj.copy()
             A_cyc = self.active_cyc.copy()
             A_prod = self.active_prod.copy()
@@ -241,7 +242,7 @@ class PositiveCone:
                 A_begin[str(gen**-1)] = self.active_begin_prod[str(gen**-1)].copy()
                 A_end[str(gen)] = self.active_end_prod[str(gen)].copy()
                 A_end[str(gen**-1)] = self.active_end_prod[str(gen**-1)].copy()
-            self.active_braid = []
+            self.active_aut = []
             self.active_conj = []
             self.active_cyc = []
             self.active_prod = []
@@ -251,7 +252,7 @@ class PositiveCone:
                 self.active_end_prod[str(gen)]=[]
                 self.active_end_prod[str(gen**-1)]=[]
 
-            for a_elt in A_braid:
+            for a_elt in A_aut:
                 y_elt = a_elt                
                 i = 0
                 was_added = True                
@@ -386,7 +387,7 @@ class PositiveCone:
         elif add_type == 'Added':
             k = self.ball_radius
         elif add_type == 'Braid Image' or add_type == 'Braid Inverse Image':
-            k = self.braid_radius
+            k = self.aut_radius
         elif add_type == 'Conjugate':
             k = self.conj_radius
         elif add_type == 'Product':
@@ -400,7 +401,7 @@ class PositiveCone:
                 self.elements.append(element)
                 #element.print_element()
                 self.total_element_set.add(z)
-                self.active_braid.append(element)
+                self.active_aut.append(element)
                 #print('        Element added of braid list.')
                 self.active_conj.append(element)
                 #print('        Element added of conj list.')
